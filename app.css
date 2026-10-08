@@ -1,0 +1,1471 @@
+/* ======================================================
+   LIFE JOURNAL - MODERN RESPONSIVE CSS
+   ====================================================== */
+
+
+/* ======================================================
+   RESET
+   ====================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background: #f5f7fb;
+  color: #1f2937;
+
+  min-height: 100vh;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+
+.hidden {
+  display: none !important;
+}
+
+
+/* ======================================================
+   HEADER
+   ====================================================== */
+
+.main-header {
+  width: 100%;
+
+  padding: 18px 5%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  border-bottom: 1px solid #e5e7eb;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  backdrop-filter: blur(12px);
+}
+
+
+.main-header h1 {
+  font-size: clamp(1.4rem, 2vw, 2rem);
+
+  font-weight: 800;
+
+  letter-spacing: -0.5px;
+}
+
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+}
+
+
+.header-actions button {
+  border: none;
+
+  padding: 10px 14px;
+
+  border-radius: 10px;
+
+  background: #eef2ff;
+  color: #3730a3;
+
+  font-weight: 600;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.header-actions button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+
+#newEntryBtn {
+  background: #4f46e5;
+  color: white;
+}
+
+
+#newEntryBtn:hover {
+  background: #4338ca;
+}
+
+
+#themeToggle {
+  font-size: 1.1rem;
+}
+
+
+#exportBtn {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+
+#importBtn {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+
+#surpriseBtn {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+
+/* ======================================================
+   MAIN LAYOUT
+   ====================================================== */
+
+.app-layout {
+  width: min(1450px, 94%);
+
+  margin: 30px auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    340px;
+
+  gap: 28px;
+
+  align-items: start;
+}
+
+
+.journal-section {
+  min-width: 0;
+}
+
+
+.entries-section h2 {
+  margin-bottom: 18px;
+
+  font-size: 1.35rem;
+}
+
+
+/* ======================================================
+   FORM
+   ====================================================== */
+
+#formContainer {
+  margin-bottom: 30px;
+}
+
+
+#entryForm {
+  background: white;
+
+  padding: 28px;
+
+  border-radius: 20px;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 15px 40px rgba(15, 23, 42, 0.08);
+}
+
+
+#entryForm h2 {
+  margin-bottom: 22px;
+
+  font-size: 1.5rem;
+}
+
+
+#entryForm label {
+  display: block;
+
+  margin: 17px 0 8px;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+
+  color: #374151;
+}
+
+
+#entryForm input,
+#entryForm textarea {
+  width: 100%;
+
+  border: 1px solid #d1d5db;
+
+  background: #f9fafb;
+
+  color: #111827;
+
+  border-radius: 11px;
+
+  padding: 12px 14px;
+
+  outline: none;
+
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+#entryForm textarea {
+  resize: vertical;
+
+  min-height: 80px;
+}
+
+
+#entryForm input:focus,
+#entryForm textarea:focus {
+  border-color: #6366f1;
+
+  background: white;
+
+  box-shadow:
+    0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+
+/* ======================================================
+   JOURNAL PROMPT
+   ====================================================== */
+
+.journal-prompt {
+  margin: 15px 0;
+
+  padding: 13px 15px;
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #eef2ff,
+    #f5f3ff
+  );
+
+  color: #4338ca;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+}
+
+
+/* ======================================================
+   MOOD PICKER
+   ====================================================== */
+
+#moodPicker {
+  display: flex;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+
+.mood-btn {
+  width: 50px;
+  height: 50px;
+
+  border: 2px solid #e5e7eb;
+
+  border-radius: 14px;
+
+  background: #f9fafb;
+
+  font-size: 1.45rem;
+
+  transition:
+    transform 0.2s ease,
+    border 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.mood-btn:hover {
+  transform: scale(1.08);
+
+  background: #eef2ff;
+}
+
+
+.mood-btn.selected {
+  border-color: #6366f1;
+
+  background: #eef2ff;
+
+  transform: scale(1.08);
+
+  box-shadow:
+    0 5px 15px rgba(99, 102, 241, 0.2);
+}
+
+
+/* ======================================================
+   FORM BUTTONS
+   ====================================================== */
+
+.form-actions {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 22px;
+}
+
+
+.form-actions button {
+  border: none;
+
+  padding: 12px 22px;
+
+  border-radius: 10px;
+
+  font-weight: 700;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+#saveBtn {
+  background: #4f46e5;
+
+  color: white;
+
+  flex: 1;
+}
+
+
+#saveBtn:hover {
+  background: #4338ca;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 18px rgba(79, 70, 229, 0.25);
+}
+
+
+#cancelBtn {
+  background: #f3f4f6;
+
+  color: #374151;
+}
+
+
+#cancelBtn:hover {
+  background: #e5e7eb;
+}
+
+
+/* ======================================================
+   CARDS GRID
+   ====================================================== */
+
+#cardsGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(290px, 1fr));
+
+  gap: 18px;
+}
+
+
+.card {
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 7px 25px rgba(15, 23, 42, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border 0.25s ease;
+}
+
+
+.card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 16px 35px rgba(15, 23, 42, 0.11);
+}
+
+
+.card.pinned {
+  border-color: #f59e0b;
+
+  box-shadow:
+    0 8px 25px rgba(245, 158, 11, 0.12);
+}
+
+
+/* ======================================================
+   CARD HEADER
+   ====================================================== */
+
+.card-header {
+  padding: 15px 17px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  background: #fafafa;
+
+  border-bottom: 1px solid #f0f0f0;
+}
+
+
+.card-date {
+  font-size: 0.85rem;
+
+  color: #6b7280;
+
+  font-weight: 600;
+}
+
+
+.card-mood {
+  margin-left: 8px;
+
+  font-size: 1.3rem;
+}
+
+
+.card-status {
+  font-size: 1rem;
+}
+
+
+/* ======================================================
+   CARD BODY
+   ====================================================== */
+
+.card-body {
+  padding: 18px;
+}
+
+
+.entry-text {
+  line-height: 1.65;
+
+  color: #374151;
+
+  white-space: pre-wrap;
+
+  word-break: break-word;
+
+  margin-bottom: 15px;
+}
+
+
+.entry-extra {
+  margin-top: 12px;
+
+  padding: 11px 13px;
+
+  background: #f9fafb;
+
+  border-radius: 10px;
+
+  border-left: 3px solid #6366f1;
+}
+
+
+.entry-extra strong {
+  display: block;
+
+  font-size: 0.82rem;
+
+  margin-bottom: 4px;
+
+  color: #4f46e5;
+}
+
+
+.entry-extra p {
+  font-size: 0.9rem;
+
+  line-height: 1.5;
+
+  color: #4b5563;
+}
+
+
+/* ======================================================
+   TAGS
+   ====================================================== */
+
+.tags {
+  display: flex;
+
+  gap: 6px;
+
+  flex-wrap: wrap;
+
+  margin-top: 15px;
+}
+
+
+.tag {
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  background: #eef2ff;
+
+  color: #4f46e5;
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+}
+
+
+.updated-time {
+  display: block;
+
+  margin-top: 12px;
+
+  color: #9ca3af;
+
+  font-size: 0.7rem;
+}
+
+
+/* ======================================================
+   CARD ACTIONS
+   ====================================================== */
+
+.card-actions {
+  padding: 12px 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  border-top: 1px solid #f0f0f0;
+
+  background: #fafafa;
+}
+
+
+.card-actions button {
+  border: none;
+
+  border-radius: 8px;
+
+  padding: 7px 9px;
+
+  font-size: 0.8rem;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.card-actions button:hover {
+  transform: translateY(-1px);
+}
+
+
+.favorite-btn {
+  background: #fff7ed;
+
+  color: #ea580c;
+}
+
+
+.pin-btn {
+  background: #fffbeb;
+
+  color: #b45309;
+}
+
+
+.edit-btn {
+  background: #eff6ff;
+
+  color: #2563eb;
+}
+
+
+.delete-btn {
+  background: #fef2f2;
+
+  color: #dc2626;
+}
+
+
+/* ======================================================
+   EMPTY STATE
+   ====================================================== */
+
+.empty-state {
+  grid-column: 1 / -1;
+
+  padding: 60px 20px;
+
+  text-align: center;
+
+  background: white;
+
+  border: 2px dashed #d1d5db;
+
+  border-radius: 18px;
+
+  color: #6b7280;
+}
+
+
+.empty-state h3 {
+  color: #374151;
+
+  margin-bottom: 7px;
+}
+
+
+/* ======================================================
+   SIDEBAR
+   ====================================================== */
+
+#sidebar {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+
+  position: sticky;
+
+  top: 100px;
+}
+
+
+.sidebar-section,
+#statsPanel {
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  box-shadow:
+    0 7px 25px rgba(15, 23, 42, 0.05);
+}
+
+
+.sidebar-section h3,
+#statsPanel h3 {
+  margin-bottom: 16px;
+
+  font-size: 1.05rem;
+}
+
+
+.sidebar-section h4 {
+  margin: 17px 0 9px;
+
+  font-size: 0.82rem;
+
+  color: #6b7280;
+}
+
+
+#searchBox {
+  width: 100%;
+
+  padding: 11px 13px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #f9fafb;
+}
+
+
+#searchBox:focus {
+  border-color: #6366f1;
+
+  box-shadow:
+    0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+
+/* ======================================================
+   FILTER BUTTONS
+   ====================================================== */
+
+#moodFilters,
+#dateRange,
+#tagFilters {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+}
+
+
+.filter-btn {
+  border: 1px solid #e5e7eb;
+
+  background: #f9fafb;
+
+  color: #4b5563;
+
+  padding: 7px 10px;
+
+  border-radius: 8px;
+
+  font-size: 0.78rem;
+
+  font-weight: 600;
+
+  transition: all 0.2s ease;
+}
+
+
+.filter-btn:hover {
+  border-color: #6366f1;
+
+  color: #4f46e5;
+}
+
+
+.filter-btn.active {
+  background: #4f46e5;
+
+  color: white;
+
+  border-color: #4f46e5;
+}
+
+
+/* ======================================================
+   STATS
+   ====================================================== */
+
+#statsPanel > div {
+  padding: 9px 0;
+
+  border-bottom: 1px solid #f0f0f0;
+
+  font-size: 0.86rem;
+}
+
+
+#statsPanel > div:last-child {
+  border-bottom: none;
+}
+
+
+.mood-stats {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  margin-top: 9px;
+}
+
+
+.mood-stats span {
+  padding: 6px 8px;
+
+  background: #f3f4f6;
+
+  border-radius: 8px;
+
+  font-size: 0.78rem;
+}
+
+
+/* ======================================================
+   GOALS & HABITS
+   ====================================================== */
+
+.goal-input-group,
+.habit-input-group {
+  display: flex;
+
+  gap: 7px;
+
+  margin-bottom: 12px;
+}
+
+
+.goal-input-group input,
+.habit-input-group input {
+  min-width: 0;
+
+  flex: 1;
+
+  padding: 10px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #f9fafb;
+}
+
+
+.goal-input-group input:focus,
+.habit-input-group input:focus {
+  border-color: #6366f1;
+}
+
+
+.goal-input-group button,
+.habit-input-group button {
+  border: none;
+
+  background: #4f46e5;
+
+  color: white;
+
+  padding: 9px 11px;
+
+  border-radius: 9px;
+
+  font-weight: 700;
+
+  font-size: 0.8rem;
+}
+
+
+.goal-item,
+.habit-item {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 10px;
+
+  margin-top: 7px;
+
+  border-radius: 10px;
+
+  background: #f9fafb;
+}
+
+
+.goal-item label,
+.habit-item label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  min-width: 0;
+
+  font-size: 0.84rem;
+}
+
+
+.goal-item span,
+.habit-item span {
+  word-break: break-word;
+}
+
+
+.goal-item.completed span {
+  text-decoration: line-through;
+
+  color: #9ca3af;
+}
+
+
+.delete-goal,
+.delete-habit {
+  border: none;
+
+  background: transparent;
+
+  color: #ef4444;
+
+  font-size: 0.9rem;
+}
+
+
+.empty-small {
+  color: #9ca3af;
+
+  font-size: 0.8rem;
+
+  text-align: center;
+
+  padding: 8px 0;
+}
+
+
+/* ======================================================
+   MODAL
+   ====================================================== */
+
+#modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 999;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(15, 23, 42, 0.6);
+
+  backdrop-filter: blur(5px);
+}
+
+
+#modalContent {
+  width: min(520px, 100%);
+
+  max-height: 80vh;
+
+  overflow-y: auto;
+
+  background: white;
+
+  border-radius: 20px;
+
+  padding: 28px;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.25);
+
+  animation: modalIn 0.25s ease;
+}
+
+
+#modalContent h2 {
+  margin-bottom: 18px;
+
+  font-size: 1.35rem;
+}
+
+
+#modalText {
+  line-height: 1.7;
+
+  color: #374151;
+
+  word-break: break-word;
+}
+
+
+#modalClose {
+  margin-top: 22px;
+
+  border: none;
+
+  padding: 10px 18px;
+
+  border-radius: 9px;
+
+  background: #4f46e5;
+
+  color: white;
+
+  font-weight: 700;
+}
+
+
+@keyframes modalIn {
+
+  from {
+    opacity: 0;
+
+    transform: translateY(15px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+/* ======================================================
+   DARK MODE
+   ====================================================== */
+
+body.dark {
+  background: #0f172a;
+
+  color: #e5e7eb;
+}
+
+
+body.dark .main-header {
+  background: rgba(15, 23, 42, 0.92);
+
+  border-color: #1e293b;
+}
+
+
+body.dark .main-header h1 {
+  color: #f8fafc;
+}
+
+
+body.dark .header-actions button {
+  background: #1e293b;
+
+  color: #e2e8f0;
+}
+
+
+body.dark #newEntryBtn {
+  background: #6366f1;
+
+  color: white;
+}
+
+
+body.dark .sidebar-section,
+body.dark #statsPanel,
+body.dark #entryForm,
+body.dark .card,
+body.dark .empty-state,
+body.dark #modalContent {
+  background: #111827;
+
+  border-color: #1f2937;
+
+  color: #e5e7eb;
+}
+
+
+body.dark #entryForm label {
+  color: #d1d5db;
+}
+
+
+body.dark #entryForm input,
+body.dark #entryForm textarea,
+body.dark #searchBox,
+body.dark .goal-input-group input,
+body.dark .habit-input-group input {
+  background: #1f2937;
+
+  color: #f9fafb;
+
+  border-color: #374151;
+}
+
+
+body.dark #entryForm input:focus,
+body.dark #entryForm textarea:focus,
+body.dark #searchBox:focus {
+  background: #111827;
+
+  border-color: #818cf8;
+}
+
+
+body.dark .journal-prompt {
+  background: #1e1b4b;
+
+  color: #c7d2fe;
+}
+
+
+body.dark .card-header,
+body.dark .card-actions {
+  background: #0f172a;
+
+  border-color: #1f2937;
+}
+
+
+body.dark .entry-text,
+body.dark .entry-extra p,
+body.dark #modalText {
+  color: #d1d5db;
+}
+
+
+body.dark .entry-extra {
+  background: #1f2937;
+
+  border-color: #818cf8;
+}
+
+
+body.dark .entry-extra strong {
+  color: #a5b4fc;
+}
+
+
+body.dark .tag {
+  background: #312e81;
+
+  color: #c7d2fe;
+}
+
+
+body.dark .filter-btn {
+  background: #1f2937;
+
+  color: #d1d5db;
+
+  border-color: #374151;
+}
+
+
+body.dark .filter-btn.active {
+  background: #6366f1;
+
+  color: white;
+
+  border-color: #6366f1;
+}
+
+
+body.dark .mood-btn {
+  background: #1f2937;
+
+  border-color: #374151;
+}
+
+
+body.dark .mood-btn.selected {
+  background: #312e81;
+
+  border-color: #818cf8;
+}
+
+
+body.dark .goal-item,
+body.dark .habit-item {
+  background: #1f2937;
+}
+
+
+body.dark #statsPanel > div {
+  border-color: #1f2937;
+}
+
+
+body.dark .mood-stats span {
+  background: #1f2937;
+}
+
+
+body.dark .empty-state h3 {
+  color: #e5e7eb;
+}
+
+
+/* ======================================================
+   TABLET
+   ====================================================== */
+
+@media (max-width: 1050px) {
+
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+
+  #sidebar {
+    position: static;
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+
+  #statsPanel {
+    grid-column: span 2;
+  }
+
+}
+
+
+/* ======================================================
+   MOBILE
+   ====================================================== */
+
+@media (max-width: 700px) {
+
+  .main-header {
+    position: static;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    padding: 15px;
+  }
+
+
+  .main-header h1 {
+    text-align: center;
+  }
+
+
+  .header-actions {
+    justify-content: center;
+  }
+
+
+  .header-actions button {
+    flex: 1;
+
+    min-width: 85px;
+
+    padding: 9px 8px;
+
+    font-size: 0.78rem;
+  }
+
+
+  .app-layout {
+    width: 94%;
+
+    margin: 20px auto;
+
+    gap: 20px;
+  }
+
+
+  #entryForm {
+    padding: 19px;
+  }
+
+
+  #entryForm h2 {
+    font-size: 1.25rem;
+  }
+
+
+  #cardsGrid {
+    grid-template-columns: 1fr;
+  }
+
+
+  #sidebar {
+    grid-template-columns: 1fr;
+  }
+
+
+  #statsPanel {
+    grid-column: span 1;
+  }
+
+
+  .card-actions {
+    flex-wrap: wrap;
+  }
+
+
+  .card-actions button {
+    flex: 1;
+  }
+
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+
+  #saveBtn {
+    flex: unset;
+  }
+
+
+  .goal-input-group,
+  .habit-input-group {
+    flex-direction: column;
+  }
+
+
+  .goal-input-group button,
+  .habit-input-group button {
+    width: 100%;
+  }
+
+}
+
+
+/* ======================================================
+   SMALL MOBILE
+   ====================================================== */
+
+@media (max-width: 430px) {
+
+  .header-actions {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  #newEntryBtn {
+    grid-column: span 2;
+  }
+
+
+  .header-actions button {
+    width: 100%;
+  }
+
+
+  .app-layout {
+    width: 92%;
+  }
+
+
+  #entryForm {
+    padding: 16px;
+  }
+
+
+  .mood-btn {
+    width: 44px;
+
+    height: 44px;
+
+    font-size: 1.2rem;
+  }
+
+
+  .card-body {
+    padding: 15px;
+  }
+
+
+  .card-actions button {
+    font-size: 0.75rem;
+  }
+
+
+  #modalContent {
+    padding: 20px;
+
+    border-radius: 16px;
+  }
+
+}
+
+
+/* ======================================================
+   SCROLLBAR
+   ====================================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #c7c9d1;
+
+  border-radius: 20px;
+}
+
+
+body.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}

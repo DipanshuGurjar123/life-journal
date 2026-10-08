@@ -1,0 +1,442 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Life Journal</title>
+
+  <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="main-header">
+
+    <h1>📓 Life Journal</h1>
+
+    <div class="header-actions">
+
+      <button id="newEntryBtn" type="button">
+        + New Entry
+      </button>
+
+      <button id="themeToggle" type="button">
+        🌙
+      </button>
+
+      <button id="exportBtn" type="button">
+        ⬇ Export
+      </button>
+
+      <button id="importBtn" type="button">
+        ⬆ Import
+      </button>
+
+      <input
+        type="file"
+        id="importFile"
+        accept=".json,application/json"
+        class="hidden"
+      >
+
+      <button id="surpriseBtn" type="button">
+        🎲 Surprise Me
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- ===== MAIN LAYOUT ===== -->
+  <main class="app-layout">
+
+    <section class="journal-section">
+
+      <!-- ===== JOURNAL FORM ===== -->
+      <div id="formContainer" class="hidden">
+
+        <form id="entryForm">
+
+          <h2>✍️ Write Your Memory</h2>
+
+          <input
+            type="hidden"
+            id="editId"
+            value=""
+          >
+
+          <!-- Date -->
+          <label for="entryDate">
+            Date
+          </label>
+
+          <input
+            type="date"
+            id="entryDate"
+            required
+          >
+
+          <!-- Mood -->
+          <label>
+            How are you feeling?
+          </label>
+
+          <div id="moodPicker">
+
+            <button
+              type="button"
+              class="mood-btn"
+              data-mood="😄"
+              aria-label="Happy"
+            >😄</button>
+
+            <button
+              type="button"
+              class="mood-btn"
+              data-mood="😐"
+              aria-label="Neutral"
+            >😐</button>
+
+            <button
+              type="button"
+              class="mood-btn"
+              data-mood="😢"
+              aria-label="Sad"
+            >😢</button>
+
+            <button
+              type="button"
+              class="mood-btn"
+              data-mood="😡"
+              aria-label="Angry"
+            >😡</button>
+
+            <button
+              type="button"
+              class="mood-btn"
+              data-mood="🤩"
+              aria-label="Excited"
+            >🤩</button>
+
+          </div>
+
+          <!-- Journal Prompt -->
+          <div id="journalPrompt" class="journal-prompt">
+            💭 What made you happy today?
+          </div>
+
+          <!-- Main Note -->
+          <label for="entryText">
+            Today's Memory
+          </label>
+
+          <textarea
+            id="entryText"
+            rows="5"
+            placeholder="Write about your day..."
+            required
+          ></textarea>
+
+          <!-- Gratitude -->
+          <label for="entryGratitude">
+            🙏 What are you grateful for?
+          </label>
+
+          <textarea
+            id="entryGratitude"
+            rows="2"
+            placeholder="Write something you are thankful for..."
+          ></textarea>
+
+          <!-- Achievement -->
+          <label for="entryAchievement">
+            🏆 Today's Achievement
+          </label>
+
+          <textarea
+            id="entryAchievement"
+            rows="2"
+            placeholder="What did you accomplish today?"
+          ></textarea>
+
+          <!-- Lesson -->
+          <label for="entryLesson">
+            🧠 What did you learn today?
+          </label>
+
+          <textarea
+            id="entryLesson"
+            rows="2"
+            placeholder="Write today's lesson..."
+          ></textarea>
+
+          <!-- Tomorrow Plan -->
+          <label for="entryTomorrow">
+            🎯 Tomorrow's Plan
+          </label>
+
+          <textarea
+            id="entryTomorrow"
+            rows="2"
+            placeholder="What do you want to achieve tomorrow?"
+          ></textarea>
+
+          <!-- Tags -->
+          <label for="entryTags">
+            Tags (comma separated)
+          </label>
+
+          <input
+            type="text"
+            id="entryTags"
+            placeholder="work, happy, family"
+          >
+
+          <!-- Form Actions -->
+          <div class="form-actions">
+
+            <button
+              type="submit"
+              id="saveBtn"
+            >
+              Save
+            </button>
+
+            <button
+              type="button"
+              id="cancelBtn"
+            >
+              Cancel
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+
+      <!-- ===== JOURNAL CARDS ===== -->
+      <section class="entries-section">
+
+        <h2>📚 My Memories</h2>
+
+        <div id="cardsGrid"></div>
+
+      </section>
+
+    </section>
+
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside id="sidebar">
+
+      <!-- Filters -->
+      <section class="sidebar-section">
+
+        <h3>🔍 Filters</h3>
+
+        <input
+          type="text"
+          id="searchBox"
+          placeholder="Search your memories..."
+        >
+
+        <!-- Mood Filters -->
+        <h4>Filter by Mood</h4>
+
+        <div id="moodFilters">
+
+          <button
+            class="filter-btn"
+            data-mood="all"
+            type="button"
+          >All</button>
+
+          <button
+            class="filter-btn"
+            data-mood="😄"
+            type="button"
+          >😄</button>
+
+          <button
+            class="filter-btn"
+            data-mood="😐"
+            type="button"
+          >😐</button>
+
+          <button
+            class="filter-btn"
+            data-mood="😢"
+            type="button"
+          >😢</button>
+
+          <button
+            class="filter-btn"
+            data-mood="😡"
+            type="button"
+          >😡</button>
+
+          <button
+            class="filter-btn"
+            data-mood="🤩"
+            type="button"
+          >🤩</button>
+
+        </div>
+
+        <!-- Tag Filters -->
+        <h4>Filter by Tags</h4>
+
+        <div id="tagFilters"></div>
+
+        <!-- Date Filters -->
+        <h4>Filter by Date</h4>
+
+        <div id="dateRange">
+
+          <button
+            class="filter-btn"
+            data-range="week"
+            type="button"
+          >
+            This Week
+          </button>
+
+          <button
+            class="filter-btn"
+            data-range="month"
+            type="button"
+          >
+            This Month
+          </button>
+
+          <button
+            class="filter-btn"
+            data-range="all"
+            type="button"
+          >
+            All
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===== STATISTICS ===== -->
+      <section id="statsPanel">
+
+        <h3>📊 Journal Insights</h3>
+
+        <div id="totalEntries"></div>
+
+        <div id="favoriteCount"></div>
+
+        <div id="pinnedCount"></div>
+
+        <div id="wordCount"></div>
+
+        <div id="longestStreakInfo"></div>
+
+        <div id="moodDist"></div>
+
+        <div id="streakInfo"></div>
+
+        <div id="topTagInfo"></div>
+
+        <div id="monthCount"></div>
+
+      </section>
+
+
+      <!-- ===== GOALS ===== -->
+      <section id="goalsPanel" class="sidebar-section">
+
+        <h3>🎯 My Goals</h3>
+
+        <div class="goal-input-group">
+
+          <input
+            type="text"
+            id="goalInput"
+            placeholder="Enter a new goal..."
+          >
+
+          <button
+            type="button"
+            id="addGoalBtn"
+          >
+            Add Goal
+          </button>
+
+        </div>
+
+        <div id="goalsList"></div>
+
+      </section>
+
+
+      <!-- ===== HABITS ===== -->
+      <section id="habitsPanel" class="sidebar-section">
+
+        <h3>🔥 Habit Tracker</h3>
+
+        <div class="habit-input-group">
+
+          <input
+            type="text"
+            id="habitInput"
+            placeholder="Enter a new habit..."
+          >
+
+          <button
+            type="button"
+            id="addHabitBtn"
+          >
+            Add Habit
+          </button>
+
+        </div>
+
+        <div id="habitsList"></div>
+
+      </section>
+
+    </aside>
+
+  </main>
+
+
+  <!-- ===== SURPRISE MODAL ===== -->
+  <div id="modal" class="hidden">
+
+    <div id="modalContent">
+
+      <h2>🎲 A Memory From Your Past</h2>
+
+      <p id="modalText"></p>
+
+      <button
+        type="button"
+        id="modalClose"
+      >
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script src="app.js"></script>
+
+</body>
+
+</html>
